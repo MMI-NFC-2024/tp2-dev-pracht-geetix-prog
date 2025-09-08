@@ -1,0 +1,25 @@
+---
+import PlotFigure from "../../components/PlotFigure.astro";
+import Layout from "../../layouts/Layout.astro";
+import * as Plot from "@observablehq/plot";
+import penguins from "../../assets/penguins.json";
+const penguinsChinstrap = penguins.filter(({ species }) => species === "Chinstrap");
+---
+
+<Layout>
+    <h1 class="text-2xl">Test Astro et Plot (Observablehq)</h1>
+    <PlotFigure
+        options={{
+            marks: [
+                Plot.dot(penguinsChinstrap, {
+                    x: "culmen_length_mm",
+                    y: "culmen_depth_mm",
+                    fill: "orange",
+                }),
+            ],
+        }}
+    />
+    <a href="javascript:history.back()" class="bg-blue-500 text-white rounded px-5 py-2.5 border-b-3 border-r-3 border-blue-700 hover:border-0 transition-all">
+        ← Back
+    </a>
+</Layout>
